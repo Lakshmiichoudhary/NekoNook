@@ -11,6 +11,7 @@ const userRoute = require("./routes/userRouter");
 
 const app = express();
 
+app.use(express.json());
 app.use(cookieParser());
 
 app.use("/user",userRoute);

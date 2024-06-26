@@ -10,6 +10,7 @@ const generateToken = (user) => {
 
 exports.registerUser = async (req,res) => {
     try{
+        //console.log(req.body)
         const { name, email, password } = req.body
 
         let userExist = await userModel.findOne({ email : email})
@@ -29,6 +30,20 @@ exports.registerUser = async (req,res) => {
     }
 }
 
-exports.loginUser = () => {
+exports.loginUser = async (req,res) => {
+    try{
+        const { email, password } = req.body;
 
+        let user = await userModel.findOne({ email : email})
+        if(!user) return res.status(401).send("Invalid email and password")
+        
+        const matchPassword = await bcrypt.compare(password,user.password);
+        if(!matchPassword) return res.status(401).send("Invalid email or password");
+
+        let token = generateToken(user);
+        res.cookie("token",token);
+        res.status(200).json({ message: "Login successful", token });
+    }catch(error){
+        res.status(500).json({ message: "Failed to login user", error: error.message });
+    }
 }
