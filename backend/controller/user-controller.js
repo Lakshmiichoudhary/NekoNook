@@ -14,7 +14,7 @@ exports.registerUser = async (req,res) => {
         const { name, email, password } = req.body
 
         let userExist = await userModel.findOne({ email : email})
-        if(userExist) return res.status(401).send("you alreay have an account")
+        if(userExist) return res.status(401).send("This Account already exists...Please login")
 
         const hashedPassword = await bcrypt.hash(password, salt);
         let user = await userModel.create({
