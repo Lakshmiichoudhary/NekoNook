@@ -66,20 +66,21 @@ const Auth = () => {
 
   return (
     <>
-    <div className='absolute'>
+    <div className='absolute font-rubik'>
       <img className='w-screen h-screen' src={bgImage} alt='bg-image'></img>
     </div>  
     <div className=' bg-white absolute my-12 mx-32 shadow-xl from-black rounded-2xl h-[540px] w-[540px]'>
         <div className='p-8'>
             <h1 className='font-bold text-2xl'>{!isLogin ? "Create your account" : "Welcome Back!"}</h1>
-            <p className='my-3 cursor-pointer' onClick={toggleLogin}>
-              {!isLogin ? "Already have an account? Login" : "Dont have an account yet? Create your account"}</p>
+            <p className='my-3 font-semibold text-gray-700' onClick={toggleLogin}>
+              {!isLogin ? "Already have an account?" : "Dont have an account yet?"}
+              <span className='mx-1 underline cursor-pointer'>{!isLogin ? "Login" : "Create your account"}</span></p>
             <p className='text-red-700 py-1 font-bold'>{errorMessage}</p>
           <form className='py-5' onSubmit={(e) => e.preventDefault()}>
           {!isLogin && <div className='mb-6'>
             <label className="font-bold block mb-2" htmlFor="name">Full Name</label>
             <input
-              className="w-full p-2 border-2 border-slate-300 rounded outline-none"
+              className="w-full p-2 border-2 border-gray-200 rounded-md outline-none"
               type="text"
               ref={name}
               placeholder="Full Name"
@@ -89,7 +90,7 @@ const Auth = () => {
           <div className='mb-6'>
             <label className="font-bold block mb-2" htmlFor="email">Email</label>
             <input
-              className="w-full p-2 border-2 border-slate-300 rounded outline-none"
+              className="w-full p-2 border-2 border-gray-200 rounded-md outline-none"
               ref={email}
               type="email"
               id="email"
@@ -100,7 +101,7 @@ const Auth = () => {
           <div className="mb-6 relative">
             <label className="font-bold block mb-2" htmlFor="password">Password</label>
             <input
-              className="w-full p-2 border-2 border-slate-300 rounded outline-none"
+              className="w-full p-2 border-2 border-gray-200 rounded-md outline-none"
               ref={password}
               type={!vPassword ? "password" : "text"}
               placeholder="Password"

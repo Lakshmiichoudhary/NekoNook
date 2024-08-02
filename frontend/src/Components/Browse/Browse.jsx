@@ -1,9 +1,10 @@
 import React from 'react'
+import Hero from './Hero'
 
 const Browse = () => {
   return (
     <div>
-      <h1>Welcome to NekoNook</h1>
+      <Hero />
     </div>
   )
 }
