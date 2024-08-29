@@ -8,6 +8,7 @@ import cart from '../../assets/cart.png'
 import bgHero from '../../assets/bgHero.png'
 import hero2 from "../../assets/Hero2.png"
 import sideImage from "../../assets/sideImage.png"
+import {Link} from "react-router-dom"
 
 const Hero = () => {
   return (
@@ -31,11 +32,11 @@ const Hero = () => {
         <nav className='p-3 px-20 flex justify-between bg-white'>
           <img className='w-52 h-10 mt-1' src={logo} alt='logo'></img>
           <div className='flex p-2 font-medium'>
-            <span className='flex mr-5'>Men <img className='w-7 h-6 p-2' src={downArrow} alt='down arrow'/></span>
-            <span className='flex mr-5'>Women <img className='w-7 h-6 p-2' src={downArrow} alt='down arrow'/></span>
-            <span className='flex mr-5'>Shop By Series <img className='w-7 h-6 p-2' src={downArrow} alt='down arrow'/></span>
-            <span className='flex mr-5'>New Drop</span>
-            <span className='flex mr-5'>Sale</span>
+            <Link className='flex mr-5'>Men <img className='w-7 h-6 p-2' src={downArrow} alt='down arrow'/></Link>
+            <Link className='flex mr-5'>Women <img className='w-7 h-6 p-2' src={downArrow} alt='down arrow'/></Link>
+            <Link className='flex mr-5'>Shop By Series <img className='w-7 h-6 p-2' src={downArrow} alt='down arrow'/></Link>
+            <Link className='flex mr-5'>New Drop</Link>
+            <Link className='flex mr-5'>Sale</Link>
           </div>
           <div className='flex'>
             <div className='relative flex justify-end mx-3'>
