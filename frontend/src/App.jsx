@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Browse from './Components/Browse/Browse'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Questions from './pages/Questions'
 
 const App = () => {
 
@@ -23,6 +24,10 @@ const App = () => {
     {
       path : "contact",
       element : <Contact />
+    },
+    {
+      path : "FAQ's",
+      element : <Questions />
     }
   ])
 
