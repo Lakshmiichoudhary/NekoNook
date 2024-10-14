@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from '../Components/Browse/NavBar'
 import Footer from '../Components/Browse/Footer'
 import bg2 from "../assets/bg2.png"
 import about1 from "../assets/about1.png"
@@ -8,6 +7,7 @@ import about2 from "../assets/about2.png"
 import about3 from "../assets/about3.png"
 import about4 from "../assets/about4.png"
 import { offer } from '../utils/constants'
+import NavBar from '../Components/NavBar/NavBar'
 
 const About = () => {
   return (

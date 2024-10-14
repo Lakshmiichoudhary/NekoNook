@@ -21,6 +21,10 @@ const Products = () => {
       <h2 className='p-2 font-semibold text-2xl'>Best Sellers You Can't Miss</h2>
       <p className='text-gray-700'>These top sellers are going fast—grab yours before they're gone!</p>
       </div>
+      <div>
+      <h2 className='p-2 font-semibold text-2xl'>Nekonook's Newest</h2>
+      <p className='text-gray-700'>Discover the latest styles and products arriving daily at Nekonook.</p>
+      </div>
     </div>
   )
 }

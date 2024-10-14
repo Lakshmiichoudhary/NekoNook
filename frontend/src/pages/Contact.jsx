@@ -1,6 +1,5 @@
 import React from 'react'
 import Footer from '../Components/Browse/Footer'
-import NavBar from '../Components/Browse/NavBar'
 import bg2 from "../assets/bg2.png"
 import { Link } from 'react-router-dom'
 import location from "../assets/location.png"
@@ -10,6 +9,7 @@ import map from "../assets/map.png"
 import logo from "../assets/Logo.png"
 import mapPin from "../assets/mapPin.png"
 import Button from "../assets/Button.png"
+import NavBar from '../Components/NavBar/NavBar'
 
 const Contact = () => {
   return (

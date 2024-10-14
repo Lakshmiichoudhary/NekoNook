@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import NavBar from '../Components/Browse/NavBar';
 import Footer from '../Components/Browse/Footer';
 import { Link } from "react-router-dom";
 import { FAQs, sideBar } from '../utils/constants';
 import arrow from "../assets/downArrow.png"; 
 import orangeArrow from "../assets/orangeArrow.png"; 
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleArrow } from '../Store/Toggle';
+import NavBar from '../Components/NavBar/NavBar';
 
 const Questions = () => {
   const [hovered, setHovered] = useState(null);
-  const [answerVisible,setAnswerVisible] = useState(0)
-
+  const dispatch = useDispatch();
+  const openQuestion = useSelector((state) => state.arrow.openArrow)
+ 
   const handleQuestion = (index) => {
-    setAnswerVisible(answerVisible === index ? null : index)
+    dispatch(toggleArrow(index))
   }
 
   return (
@@ -23,7 +26,7 @@ const Questions = () => {
         <Link to="/browse" className='text-neutral-400'>
           Home &nbsp;|&nbsp;
         </Link>
-        <span className='mx-2'>FAQ's</span>
+        <span className='mx-2 font-bold'>FAQ's</span>
       </div>
       <div className='flex'>
         <div className='px-16'>
@@ -46,11 +49,11 @@ const Questions = () => {
         <div className='p-2 w-2/3'>
             {FAQs.map((faq,index)=>(
                 <div key={index} className='mb-10'>
-                    <div className='flex items-center justify-between'>
-                        <h3 className='p-2 font-bold'>{faq.question}</h3>
-                        <img onClick={()=>handleQuestion(index)} className={`px-4 mx-5 ${answerVisible === index ? "transform rotate-180" : "null"}`} src={arrow} alt='arrow'></img>
+                    <div className='flex items-center justify-between' onClick={()=>handleQuestion(index)}>
+                        <h3 className='p-2 font-bold cursor-pointer'>{faq.question}</h3>
+                        <img className={`px-4 mx-5 ${openQuestion.includes(index) ? "transform rotate-180" : "null"}`} src={arrow} alt='arrow'></img>
                     </div>
-                    {answerVisible === index && <p className='p-2 mb-6'>{faq.answer}</p>}
+                    {openQuestion.includes(index) && <p className='p-2 mb-6'>{faq.answer}</p>}
                 </div>
             ))}
         </div>

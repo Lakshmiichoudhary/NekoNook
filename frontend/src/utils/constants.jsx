@@ -90,3 +90,43 @@ export const FAQs = [
     }   
 
 ] 
+
+export const sidebarFilters = {
+    categories: {
+        hoodies: false,
+        jackets: false,
+        oversizedHoodie: false,  
+        oversizedTShirt: false,
+        sweatshirts: false,
+        tankTop: false,
+    },
+    genders: {
+        men: false,
+        women: false,
+    },
+    price: [0, 2499], 
+    sizes: {
+        S: false,
+        M: false,
+        L: false,
+        XL: false,
+        XXL: false,
+    },
+    themes: {
+        Naruto: false,
+        OnePiece: false,
+        Attack_On_Titan: false,
+        sporty: false,
+    },
+    colors: {
+        black: false,
+        white: false,
+        red: false,
+        blue: false,
+        green: false,
+    },
+    availability: {
+        inStock: false,
+        outOfStock: false,
+    },
+};

@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom'
 const Auth = () => {
   const [vPassword,setVPassword] = useState(false)
   const [isLogin,setIsLogin] = useState(true)
+  const [isAdminLogin,setIsAdminLogin] = useState(false)
   const [errorMessage,setErrorMessage] = useState("")
   const name = useRef(null)
   const email = useRef(null)
@@ -30,28 +31,35 @@ const Auth = () => {
   };
 
   try {
-      const response = await fetch(`http://localhost:3000/user/${isLogin ? 'login' : 'signup'}`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          credentials: 'include',
-          body: JSON.stringify(userDetails),
-      });
+    const endpoint = isAdminLogin ? "admin/login" : `user/${isLogin ? "login" : "signup"} `
 
-      if (!response.ok) {
-          const errorText = await response.text(); 
-          setErrorMessage(errorText); 
-          return;
-      }
+    const response = await fetch(`http://localhost:3000/${endpoint}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(userDetails),
+    });
 
-      const data = await response.json();
-      dispatch(adduser(data.user))
-      //console.log(data);
+    if (!response.ok) {
+      const errorText = await response.text(); 
+      setErrorMessage(errorText); 
+      return;
+    }
+
+    const data = await response.json();
+    dispatch(adduser(data.user))
+    //console.log(data);
+
+    if(isAdminLogin){
+      navigate("/Admin-Dashboard")
+    }else{
       navigate("/browse")
+    }
     } catch (error) {
-        setErrorMessage("Failed to fetch");
-        console.error(error);
+      setErrorMessage("Failed to fetch");
+      console.error(error);
     }
   }
     

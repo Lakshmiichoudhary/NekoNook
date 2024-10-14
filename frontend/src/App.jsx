@@ -5,6 +5,9 @@ import Browse from './Components/Browse/Browse'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Questions from './pages/Questions'
+import Sale from './pages/Sale'
+import AdminDashboard from './Admin/AdminDashboard'
+import NewDrop from './pages/NewDrop'
 
 const App = () => {
 
@@ -28,7 +31,20 @@ const App = () => {
     {
       path : "FAQ's",
       element : <Questions />
-    }
+    },
+    {
+      path : "sale",
+      element : <Sale />
+    },
+    {
+      path : "Admin-Dashboard",
+      element : <AdminDashboard />
+    },
+    {
+      path : "newDrop",
+      element : <NewDrop />
+    },
+
   ])
 
   return (

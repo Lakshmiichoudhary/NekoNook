@@ -3,7 +3,7 @@ const Admin = require("../models/admin-model");
 
 const salt = 10;
 
-exports.createAdmin = async () => {
+exports.loginAdmin = async () => {
     try {
         const adminExists = await Admin.findOne({ email: 'admin@gmail.com' });
         if (adminExists) {

@@ -2,7 +2,7 @@ import React from 'react'
 import bgHero from '../../assets/bgHero.png'
 import hero2 from "../../assets/Hero2.png"
 import sideImage from "../../assets/sideImage.png"
-import NavBar from './NavBar'
+import NavBar from '../NavBar/NavBar'
 
 const Hero = () => {
   return (

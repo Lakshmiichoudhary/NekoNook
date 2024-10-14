@@ -9,7 +9,8 @@ connectDB()
 const PORT = process.env.PORT || 4040
 
 // routes
-const userRoute = require("./routes/userRouter");
+const userRoute = require("./routes/userRouter")
+const adminRoute = require("./routes/adminRoute")
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(cors({
 }))
 
 app.use("/user",userRoute);
+app.use("/admin",adminRoute);
 
 
 app.listen(PORT,()=>{
