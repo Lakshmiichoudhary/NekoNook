@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleArrow } from '../../Store/Toggle.jsx';
 import Womens from './MenuItems/Womens.jsx';
 import BySeries from './MenuItems/BySeries.jsx';
+import Profile from './MenuItems/Profile.jsx';
 
 const NavBar = () => {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ const NavBar = () => {
               />
             </button>
             {openArrow.includes('men') && (
-              <div className='absolute mt-8 rounded-b-lg shadow-2xl bg-white'>
+              <div className='absolute mt-10 rounded-b-lg shadow-2xl bg-white'>
                 <Mens />
               </div>
             )}
@@ -97,9 +98,13 @@ const NavBar = () => {
             ></input>
             <img className='p-2 w-9 h-9 absolute' src={search} alt='search'/>
           </div>
-          <div className='p-2 w-9 h-9 mx-1'>
+          <div className='p-2 w-9 h-9 mx-1' onClick={() => handleArrow("profile")}>
             <img src={profile} alt='profile'/>
           </div>
+          {openArrow.includes("profile") && 
+          <div className='absolute mt-14 ml-48 rounded-lg shadow-2xl from-black bg-white'>
+            <Profile />
+          </div>}
           <div className='relative p-2 w-9 h-9 mx-1'>
             <img src={fav} alt='fav'/>
             <sub className='absolute top-0 bottom-8 left-5 rounded-full p-2 right-0 bg-black text-white'>0</sub>

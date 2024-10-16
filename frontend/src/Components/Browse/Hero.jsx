@@ -17,7 +17,7 @@ const Hero = () => {
       <div className='absolute inset-0 flex justify-center items-center flex-col text-white'>
         <h3 className='font-thin'>Stay Cozy and Stylish</h3>
         <h1 className='text-5xl font-bold mt-4'>Hoodies & Sweatshirts</h1>
-        <button className='bg-orange-400 p-3 mt-12 font-semibold px-8 text-black rounded-lg'>Shop Now</button>
+        <button className='bg-orange-400 hover:bg-orange-300 p-3 mt-12 font-semibold px-8 text-black rounded-lg'>Shop Now</button>
       </div>
       <div className='absolute top-0 left-0 w-full'>
         <NavBar />
