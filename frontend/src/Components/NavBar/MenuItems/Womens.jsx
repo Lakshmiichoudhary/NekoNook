@@ -2,15 +2,15 @@ import React from 'react'
 
 const Womens = () => {
   return (
-    <div className='flex flex-col w-48 p-1 rounded-lg shadow-2xl from-black font-rubik'>
-        <span className='p-2 mx-3 mt-1'>Hoodies</span>
-        <span className='p-2 mx-3 mt-1'>Jackets</span>
-        <span className='p-2 mx-3 mt-1'>Long sleeves</span>
-        <span className='p-2 mx-3 mt-1'>Oversized T-Shirts</span>
-        <span className='p-2 mx-3 mt-1'>Shorts</span>
-        <span className='p-2 mx-3 mt-1'>Sweatshirts</span>
-        <span className='p-2 mx-3 mt-1'>Tank Top</span>
-    </div>
+    <ul className='p-1 rounded-lg shadow-2xl from-black font-rubik text-sm w-44'>
+        <li className='p-2 mx-1 hover:text-orange-400'>Hoodies</li>
+        <li className='p-2 mx-1 hover:text-orange-400'>Jackets</li>
+        <li className='p-2 mx-1 hover:text-orange-400'>Long sleeves</li>
+        <li className='p-2 mx-1 hover:text-orange-400'>Oversized T-Shirts</li>
+        <li className='p-2 mx-1 hover:text-orange-400'>Shorts</li>
+        <li className='p-2 mx-1 hover:text-orange-400'>Sweatshirts</li>
+        <li className='p-2 mx-1 hover:text-orange-400'>Tank Top</li>
+    </ul>
   )
 }
 

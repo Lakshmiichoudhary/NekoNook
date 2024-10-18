@@ -18,7 +18,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const openArrow = useSelector((state) => state.arrow.openArrow);
 
-  const [hovered, setHovered] = useState(null); 
+  const [hovered, setHovered] = useState(null);
 
   const handleArrow = (id) => {
     dispatch(toggleArrow(id));
@@ -35,7 +35,7 @@ const NavBar = () => {
           <div className='flex p-2 mx-4 font-medium'>
             <button
               onClick={() => handleArrow('men')}
-              className='flex pr-5 items-center hover:text-orange-400'
+              className={`flex cursor-default pr-5 items-center hover:text-orange-400`}
               onMouseEnter={() => setHovered('men')} 
               onMouseLeave={() => setHovered(null)} 
             >
@@ -53,7 +53,7 @@ const NavBar = () => {
             )}
             <button
               onClick={() => handleArrow('women')}
-              className='flex pr-5 items-center hover:text-orange-400'
+              className='flex pr-5 items-center cursor-default hover:text-orange-400'
               onMouseEnter={() => setHovered('women')}
               onMouseLeave={() => setHovered(null)}
             >
@@ -65,12 +65,12 @@ const NavBar = () => {
               />
             </button>
             {openArrow.includes('women') && (
-              <div className='absolute mt-8 ml-16 rounded-lg shadow-2xl bg-white'>
+              <div className='absolute mt-8 ml-16 cursor-default rounded-lg shadow-2xl bg-white'>
                 <Womens />
-              </div>
+              </div> 
             )}
             <button onClick={() => handleArrow("series")}
-              className='flex pr-5 items-center hover:text-orange-400'
+              className='flex pr-5 items-center cursor-default hover:text-orange-400'
               onMouseEnter = {() => setHovered("series")}
               onMouseLeave = {() => setHovered(null)}
             >
@@ -81,11 +81,11 @@ const NavBar = () => {
               alt='down arrow'/>
             </button>
             {openArrow.includes("series") && 
-              <div className='absolute mt-8 ml-36 rounded-lg shadow-2xl from-black bg-white'>
+              <div className='absolute mt-8 ml-40 rounded-lg shadow-2xl from-black bg-white'>
                 <BySeries />
               </div>}
-            <Link to="/newDrop" className='flex mr-5'>New Drops</Link>
-            <Link to="/sale" className='flex mr-5'>Sale</Link>
+            <Link to="/newDrop" className='flex mr-5 cursor-default hover:text-orange-400'>New Drops</Link>
+            <Link to="/sale" className='flex mr-5 cursor-default hover:text-orange-400'>Sale</Link>
           </div>
         </div>
         
@@ -98,21 +98,25 @@ const NavBar = () => {
             ></input>
             <img className='p-2 w-9 h-9 absolute' src={search} alt='search'/>
           </div>
-          <div className='p-2 w-9 h-9 mx-1' onClick={() => handleArrow("profile")}>
+          <div className='p-2 mx-1 cursor-default' onClick={() => handleArrow("profile")}>
             <img src={profile} alt='profile'/>
           </div>
           {openArrow.includes("profile") && 
           <div className='absolute mt-14 ml-48 rounded-lg shadow-2xl from-black bg-white'>
             <Profile />
           </div>}
-          <div className='relative p-2 w-9 h-9 mx-1'>
+          <Link to="/wishlist" className='relative p-2 mx-1 cursor-default'>
             <img src={fav} alt='fav'/>
-            <sub className='absolute top-0 bottom-8 left-5 rounded-full p-2 right-0 bg-black text-white'>0</sub>
-          </div>
-          <div className='relative p-2 w-9 h-9 mx-1'>
+            <sub className='absolute rounded-full w-5 -top-1 -right-1 flex justify-center items-center h-5 bg-orange-950 text-white'>
+              0
+            </sub>
+          </Link>
+          <Link to="/cart" className='relative p-2 mx-1 cursor-default'>
             <img src={cart} alt='cart'/>
-            <sub className='absolute top-0 bottom-8 left-5 rounded-full p-2 right-0 bg-black text-white'>0</sub>
-          </div>
+            <sub className='absolute rounded-full w-5 h-5 flex justify-center items-center -top-1 -right-1 bg-orange-950 text-white'>
+              0
+            </sub>
+          </Link>
         </div>
       </nav>
     </div>

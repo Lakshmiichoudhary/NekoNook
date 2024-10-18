@@ -8,6 +8,8 @@ import Questions from './pages/Questions'
 import Sale from './pages/Sale'
 import AdminDashboard from './Admin/AdminDashboard'
 import NewDrop from './pages/NewDrop'
+import WishList from './pages/WishList'
+import Cart from './pages/Cart'
 
 const App = () => {
 
@@ -43,6 +45,14 @@ const App = () => {
     {
       path : "newDrop",
       element : <NewDrop />
+    },
+    {
+      path : "wishlist",
+      element : <WishList />
+    },
+    {
+      path : "cart",
+      element : <Cart />
     },
 
   ])

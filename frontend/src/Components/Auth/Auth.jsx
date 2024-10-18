@@ -125,7 +125,7 @@ const Auth = () => {
             Forgot Your Password?
           </p>}
           <button type="submit" onClick={handleSubmit}
-          className="w-full my-3 bg-orange-400 font-semibold py-2 rounded-lg">{!isLogin ? "Create Account" : "Sign In"}</button>
+          className="w-full my-3 bg-orange-400 text-white hover:bg-orange-300 font-semibold py-2 rounded-lg">{!isLogin ? "Create Account" : "Sign In"}</button>
         </form>
         </div>
     </div>

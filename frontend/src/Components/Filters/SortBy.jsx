@@ -9,13 +9,13 @@ const SortBy = () => {
     }
 
   return (
-    <div>
-    <div className='flex cursor-pointer bg-gray-100 w-48 p-1 rounded-lg justify-between items-center font-semibold'
+    <div className='font-rubik'>
+    <div className='flex cursor-pointer bg-gray-100 w-52 p-1 rounded-lg justify-between items-center font-semibold'
         onClick={handleOpen}>
         <h4 className='p-2'>Sort By</h4>
         <img className={`p-2 ${isOpen ? 'transform rotate-180' : "null"}`} src={arrow} alt='arrow'></img>
     </div>
-    {isOpen && <div className='flex flex-col w-48 p-1 rounded-lg shadow-2xl from-black'>
+    {isOpen && <div className='flex flex-col w-52 p-1 rounded-lg shadow-2xl from-black cursor-pointer'>
         <span className='p-2 mx-3 mt-2'>Best Selling</span>
         <span className='p-2 mx-3 mt-2'>Popularity</span>
         <span className='p-2 mx-3 mt-2'>Alphabetically: A - Z</span>
