@@ -1,5 +1,9 @@
 import React from 'react'
 import { productdata } from '../../utils/constants'
+import frames from "./../../assets/frames.png"
+import frame2 from "./../../assets/frame2.png"
+import Offers from './Offers'
+import Reviews from './Reviews'
 
 const Products = () => {
 
@@ -24,6 +28,18 @@ const Products = () => {
       <div>
       <h2 className='p-2 font-semibold text-2xl'>Nekonook's Newest</h2>
       <p className='text-gray-700'>Discover the latest styles and products arriving daily at Nekonook.</p>
+      </div>
+      <div className='w-screen my-6'>
+        <img src={frame2} alt='image'/>
+      </div>
+      <div className='my-9'>
+        <Offers />
+      </div>
+      <div className='my-9'>
+        <Reviews />
+      </div>
+      <div className='w-screen'>
+        <img src={frames} alt='image' />
       </div>
     </div>
   )

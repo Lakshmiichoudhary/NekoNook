@@ -31,6 +31,7 @@ const Auth = () => {
   };
 
   try {
+    const isAdminLogin = email.current.value === import.meta.env.VITE_ADMIN;
     const endpoint = isAdminLogin ? "admin/login" : `user/${isLogin ? "login" : "signup"} `
 
     const response = await fetch(`http://localhost:3000/${endpoint}`, {

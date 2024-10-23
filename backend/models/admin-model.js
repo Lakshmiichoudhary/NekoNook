@@ -7,4 +7,4 @@ const adminSchema = mongoose.Schema({
     picture : { type : String }
 })
 
-module.exports = mongoose.model("admin",adminSchema)
+module.exports = mongoose.model("admin",adminSchema,"admins")
