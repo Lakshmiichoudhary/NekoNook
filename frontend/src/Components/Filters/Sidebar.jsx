@@ -1,181 +1,157 @@
 import React, { useState } from 'react';
 import arrow from '../../assets/downArrow.png'
+import { categories, colors, gender, size, themes } from '../../utils/constants';
 
 const Sidebar = () => {
-  const [filters, setFilters] = useState({
-    categories: {
-      hoodies: false,
-      jackets: false,
-      oversizedHoodie: false,
-      oversizedTShirt: false,
-      sweatshirts: false,
-      tankTop: false,
-    },
-    genders: {
-      men: false,
-      women: false,
-    },
-    sizes: {
-      S: false,
-      M: false,
-      L: false,
-      XL: false,
-      XXL: false,
-    },
-    themes: {
-      Naruto: false,
-      OnePiece: false,
-      Attack_On_Titan: false,
-      Jujutsu_Kaisen: false,
-      Haikyu: false,
-      Hunter_X_Hunter: false,
-      Berserk: false,
-      Dragon_Ball: false,
-      Black_Clover: false,
-      Tokyo_Revengers: false,
-      Spy_X_Family: false,
-    },
-    colors: {
-      Beige : false,
-      Black: false,
-      Blue: false,
-      Brown: false,
-      White: false,
-      Yellow: false,
-      Pink: false,
-      Red: false,
-      Silver: false,
-      Peach: false,
-      Navy: false,
-    },
-    availability: {
-      Include_Out_of_Stock: false
-    },
-  });
+  const [priceRange,setPriceRange] = useState([0,2499])
 
-  const handleToggle = (category, key) => {
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [category]: {
-        ...prevFilters[category],
-        [key]: !prevFilters[category][key],
-      },
-    }));
-  };
+  const handlePrice = (e) => {
+    const value = parseInt(e.target.value,10)
+    setPriceRange([0,value])
+  }
+
+  const pricePosition = (priceRange[1] / 2499) * 100;
 
   return (
-    <aside className="w-64 font-rubik p-4 bg-gray-100">
-      <h2 className="font-bold mb-4">Filters</h2>
-      <div>
-        <div className='flex items-center'>
-          <h3 className="font-bold">Category</h3>
-          <img className='mx-3' src={arrow} alt='arrow'></img>
+    <div className='font-rubik w-64'>
+        <h3 className='p-1 font-black text-lg mb-7 mt-5'>Filter</h3>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Category</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
+          </div>
+          <div className='flex flex-col p-2 border-b border-gray-300'>
+            {categories.map(category => (
+              <label key={category} className='flex items-center'>
+                <input className='hidden peer' type='checkbox'></input>
+                <span className='w-[21px] h-[21px] border border-gray-400 peer-checked:bg-black peer-checked:border-transparent peer-checked:after:content-["✓"] peer-checked:after:text-white peer-checked:after:text-sm peer-checked:after:flex peer-checked:after:items-center peer-checked:after:justify-center rounded-md'></span>
+                <span className='p-2 text-sm'>{category}</span>
+              </label>
+            ))}
         </div>
-        {Object.keys(filters.categories).map((category) => (
-          <div key={category}>
-            <input
-              type="checkbox"
-              id={category}
-              checked={filters.categories[category]}
-              onChange={() => handleToggle('categories', category)}
-            />
-            <label htmlFor={category} className="ml-2 capitalize">
-              {category}
-            </label>
+        </div>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Gender</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
           </div>
-        ))}
-      </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Gender</h3>
-        {Object.keys(filters.genders).map((gender) => (
-          <div key={gender}>
-            <input
-              type="checkbox"
-              id={gender}
-              checked={filters.genders[gender]}
-              onChange={() => handleToggle('genders', gender)}
-            />
-            <label htmlFor={gender} className="ml-2 capitalize">
-              {gender}
-            </label>
+          <div className='flex flex-col p-2 border-b border-gray-300'>
+            {gender.map(gen => (
+              <label key={gen} className='flex items-center'>
+                <input className='hidden peer' type='checkbox'></input>
+                <span className='w-[21px] h-[21px] border border-gray-400 peer-checked:bg-black peer-checked:border-transparent peer-checked:after:content-["✓"] peer-checked:after:text-white peer-checked:after:text-sm peer-checked:after:flex peer-checked:after:items-center peer-checked:after:justify-center rounded-md'></span>
+                <span className='p-2 text-sm'>{gen}</span>
+              </label>
+            ))}
+        </div>
+        </div>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Price</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
           </div>
-        ))}
-      </div>
-      <div className='mt-4'>
-        <h3 className='font-bold'>Price</h3>
-      </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Sizes</h3>
-        {Object.keys(filters.sizes).map((size) => (
-          <div key={size}>
-            <input
-              type="checkbox"
-              id={size}
-              checked={filters.sizes[size]}
-              onChange={() => handleToggle('sizes', size)}
-            />
-            <label htmlFor={size} className="ml-2 capitalize">
-              {size}
-            </label>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Themes</h3>
-        {Object.keys(filters.themes).map((theme) => (
-          <div key={theme}>
-            <input
-              type="checkbox"
-              id={theme}
-              checked={filters.themes[theme]}
-              onChange={() => handleToggle('themes', theme)}
-            />
-            <label htmlFor={theme} className="ml-2 capitalize">
-              {theme.replace(/_/g, ' ')}
-            </label>
-          </div>
-        ))}
-      </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Colors</h3>
-        {Object.keys(filters.colors).map((color) => (
-          <div key={color} className="flex items-center mb-2">
-            <input
-              type="checkbox"
-              id={color}
-              checked={filters.colors[color]}
-              onChange={() => handleToggle('colors', color)}
-            />
-            <div
-              className="ml-2 w-4 h-4 rounded-full border"
+          <div className='flex flex-col p-2 border-b border-gray-300 text-sm'>
+          <div className='flex justify-between relative '>
+            <span className='px-1 text-gray-600'>₹{priceRange[0]}</span>
+            <span
+              className='absolute  text-gray-600'
               style={{
-                backgroundColor: color.toLowerCase(),
+                left: `calc(${pricePosition}% - 15px)`, 
               }}
-            ></div>
-            <label htmlFor={color} className="ml-2 capitalize">
-              {color}
-            </label>
+            >
+              ₹{priceRange[1]}
+            </span>
           </div>
-        ))}
-      </div>
-      <div className="mt-4">
-        <h3 className="font-semibold">Availability</h3>
-        {Object.keys(filters.availability).map((status) => (
-          <div key={status}>
-            <input
-              type="checkbox"
-              id={status}
-              checked={filters.availability[status]}
-              onChange={() => handleToggle('availability', status)}
-            />
-            <label htmlFor={status} className="ml-2 capitalize">
-              {status.replace(/_/g, ' ')}
-            </label>
+          <div className='relative w-full'>
+          <div 
+            className='absolute left-0 top-3 transform -translate-y-1/2 w-3 h-3 bg-gray-300 border border-gray-700 rounded-full'
+            style={{ right: `${pricePosition}%` }}
+          ></div>
+          <div 
+            className='absolute right-0 top-3 transform -translate-y-1/2 w-3 h-3 bg-gray-300 border border-gray-700 rounded-full'
+            style={{ left: `${pricePosition}%` }}
+          ></div>
+          <input 
+            type="range"
+            min="0"
+            max="2499"
+            value={priceRange[1]}
+            onChange={handlePrice}
+            className='w-full appearance-none bg-gray-300 rounded-md h-1 cursor-pointer border-none custom-slider'
+            style={{
+              background: `linear-gradient(to right, #333333 ${pricePosition}%, lightgray 0)`
+            }}
+          />
           </div>
-        ))}
-      </div>
-    </aside>
-  );
-};
-
+          <div className='flex justify-between py-1'>
+            <span className='px-1 text-gray-400'>₹0</span>
+            <span className='px-1 text-gray-400'>₹2499</span>
+          </div>
+          </div>
+        </div>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Size</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
+          </div>
+          <div className='flex flex-col p-2 border-b border-gray-300'>
+            {size.map(size => (
+              <label key={size} className='flex items-center'>
+                <input className='hidden peer' type='checkbox'></input>
+                <span className='w-[21px] h-[21px] border border-gray-400 peer-checked:bg-black peer-checked:border-transparent peer-checked:after:content-["✓"] peer-checked:after:text-white peer-checked:after:text-sm peer-checked:after:flex peer-checked:after:items-center peer-checked:after:justify-center rounded-md'></span>
+                <span className='p-2 text-sm'>{size}</span>
+              </label>
+            ))}
+        </div>
+        </div>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Themes</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
+          </div>
+          <div className='flex flex-col p-2 border-b border-gray-300'>
+            {themes.map(theme => (
+              <label key={theme} className='flex items-center'>
+                <input className='hidden peer' type='checkbox'></input>
+                <span className='w-[21px] h-[21px] border border-gray-400 peer-checked:bg-black peer-checked:border-transparent peer-checked:after:content-["✓"] peer-checked:after:text-white peer-checked:after:text-sm peer-checked:after:flex peer-checked:after:items-center peer-checked:after:justify-center rounded-md'></span>
+                <span className='p-2 text-sm'>{theme}</span>
+              </label>
+            ))}
+        </div>
+        </div>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Color</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
+          </div>
+          <div className='flex flex-col p-2 border-b border-gray-300'>
+            {colors.map(color => (
+              <label key={color} className='flex items-center'>
+                <input className='hidden peer' type='checkbox'></input>
+                <span className='w-[21px] h-[21px] border border-gray-400 peer-checked:bg-black peer-checked:border-transparent peer-checked:after:content-["✓"] peer-checked:after:text-white peer-checked:after:text-sm peer-checked:after:flex peer-checked:after:items-center peer-checked:after:justify-center rounded-md'></span>
+                <span
+                  className='w-5 h-5 ml-2 rounded-full'
+                  style={{ backgroundColor: color.hex }}
+                ></span>
+                <span className='p-2 text-sm'>{color.name}</span>
+              </label>
+            ))}
+        </div>
+        </div>
+        <div className='my-4 mb-5'>
+          <div className='flex items-center justify-between'>
+          <h3 className='p-1 font-black text-lg'>Availability</h3>
+          <img className='w-4' src={arrow} alt='arrow'/>
+        </div>
+          <div className='flex flex-col p-2'>
+          <label className='flex items-center'>
+                <input className='hidden peer' type='checkbox'></input>
+                <span className='w-[21px] h-[21px] border border-gray-400 peer-checked:bg-black peer-checked:border-transparent peer-checked:after:content-["✓"] peer-checked:after:text-white peer-checked:after:text-sm peer-checked:after:flex peer-checked:after:items-center peer-checked:after:justify-center rounded-md'></span>
+                <span className='p-2 text-sm'>Include Out Of Stock</span>
+              </label>
+          </div>
+        </div>
+    </div>
+  )
+}
 export default Sidebar;

@@ -89,44 +89,53 @@ export const FAQs = [
         and follow industry best practices to protect your data during transactions.`
     }   
 
-] 
+]
 
-export const sidebarFilters = {
-    categories: {
-        hoodies: false,
-        jackets: false,
-        oversizedHoodie: false,  
-        oversizedTShirt: false,
-        sweatshirts: false,
-        tankTop: false,
-    },
-    genders: {
-        men: false,
-        women: false,
-    },
-    price: [0, 2499], 
-    sizes: {
-        S: false,
-        M: false,
-        L: false,
-        XL: false,
-        XXL: false,
-    },
-    themes: {
-        Naruto: false,
-        OnePiece: false,
-        Attack_On_Titan: false,
-        sporty: false,
-    },
-    colors: {
-        black: false,
-        white: false,
-        red: false,
-        blue: false,
-        green: false,
-    },
-    availability: {
-        inStock: false,
-        outOfStock: false,
-    },
-};
+export const categories = [
+        "Hoodies",
+        "Jackets",
+        "Oversized Hoodie",  
+        "Oversized T-Shirt",
+        "Sweatshirts",
+        "Tank Top",
+]
+
+export const gender = [
+    "Men",
+    "women",
+]
+
+export const size = [
+    "S","M","L","Xl","XXL"
+]
+
+export const themes = [
+    "Naruto",
+    "One Piece",
+    "Attack On Titan",
+    "Demon Slayer",
+    "Jujutsu Kaisen",
+    "Haikyu",
+    "Hunter X Hunter",
+    "Berserk",
+    "Dragon Ball",
+    "Black Clove",
+    "Tokyo Revengers",
+    "Spy X Family"
+]
+
+export const colors = [
+    { name: "Beige", hex: "#F5F5DC" },
+    { name: "Black", hex: "#000000" },
+    { name: "Blue", hex: "#87CEEB" },
+    { name: "Brown", hex: "#A52A2A" },
+    { name: "White", hex: "#FFFFFF" },
+    { name: "Yellow", hex: "#FFFF00" },
+    { name: "Pink", hex: "#FFC0CB" },
+    { name: "Red", hex: "#FF0000" },
+    { name: "Silver", hex: "#C0C0C0" },
+    { name: "Peach", hex: "#FFDAB9" },
+    { name: "Navy", hex: "#000080" },
+];
+
+
