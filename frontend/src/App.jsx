@@ -10,6 +10,9 @@ import AdminDashboard from './Admin/AdminDashboard'
 import NewDrop from './pages/NewDrop'
 import WishList from './pages/WishList'
 import Cart from './pages/Cart'
+import NewestProducts from './Admin/NewestProducts'
+import LimitedOffer from './Admin/LimitedOffer'
+import AddBestSeller from './Admin/AddBestSeller'
 
 const App = () => {
 
@@ -40,7 +43,21 @@ const App = () => {
     },
     {
       path : "Admin-Dashboard",
-      element : <AdminDashboard />
+      element : <AdminDashboard />,
+      children: [
+        {
+          index: true, 
+          element: <AddBestSeller />,
+        },
+        {
+          path: 'newest',
+          element: <NewestProducts />,
+        },
+        {
+          path: 'offer',
+          element: <LimitedOffer />,
+        },
+      ],
     },
     {
       path : "newDrop",

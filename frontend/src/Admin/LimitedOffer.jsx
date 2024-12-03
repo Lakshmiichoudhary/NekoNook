@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 
-function AddBestSeller() {
+const LimitedOffer = () => {
     const [formData, setFormData] = useState({
         name: '',
         price: '',
         image: '',
         rating: '',
+        originalPrice: '',
       });
     
     const handleChange = (e) => {
@@ -16,7 +17,7 @@ function AddBestSeller() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:3000/products/add', {
+            const response = await fetch('http://localhost:3000/products/offer', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -25,7 +26,7 @@ function AddBestSeller() {
             });
             const result = await response.json(); 
             alert(result.message || 'Product added successfully');
-            setFormData({ name: '', price: '', image: '', rating: '' }); 
+            setFormData({ name: '', price: '', image: '', rating: '', originalPrice: ''}); 
         } catch (error) {
             console.error('Error adding product:', error);
             alert('Failed to add product');
@@ -34,7 +35,7 @@ function AddBestSeller() {
 
   return (
     <div className="p-6 mt-10 max-w-lg mx-auto bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Add Best Selling Product</h2>
+      <h2 className="text-2xl font-bold mb-4">Add Limited Offer Product</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,6 +51,15 @@ function AddBestSeller() {
           name="price"
           placeholder="Price"
           value={formData.price}
+          onChange={handleChange}
+          required
+          className="w-full p-2 border rounded mb-4"
+        />
+        <input
+          type="number"
+          name="originalPrice"
+          placeholder="Original Price"
+          value={formData.originalPrice}
           onChange={handleChange}
           required
           className="w-full p-2 border rounded mb-4"
@@ -80,4 +90,4 @@ function AddBestSeller() {
   )
 }
 
-export default AddBestSeller
+export default LimitedOffer

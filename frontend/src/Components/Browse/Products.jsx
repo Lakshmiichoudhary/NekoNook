@@ -11,6 +11,8 @@ import Reviews from './Reviews'
 const Products = () => {
   const [bestProduct,setBestProduct] = useState([])
   const [currentIndex,setCurrentIndex] = useState(0)
+  const [newestProduct,setNewestProducts] = useState([])
+  const [newestCurrentIndex, setNewestCurrentIndex] = useState(0);
   const itemPerPage = 4
   //console.log(productdata)
 
@@ -20,6 +22,7 @@ const Products = () => {
         const response = await fetch("http://localhost:3000/products/")
         const data = await response.json()
         setBestProduct(data)
+        //console.log(data)
       }
       catch(error){
         console.error('error fetching products',error)
@@ -27,6 +30,22 @@ const Products = () => {
     }
     fetchProduct()
   },[])
+
+  useEffect(()=>{
+    const fetchProduct = async () => {
+      try{
+        const response = await fetch("http://localhost:3000/products/new")
+        const data = await response.json()
+        setNewestProducts(data)
+        console.log(data)
+      }
+      catch(error){
+        console.error('error fetching products',error)
+      }
+    }
+    fetchProduct()
+  },[])
+
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
@@ -39,6 +58,18 @@ const Products = () => {
       prevIndex + itemPerPage >= bestProduct.length ? 0 : prevIndex + itemPerPage
     );
   }
+
+  const handleNewestPrev = () => {
+    setNewestCurrentIndex((prevIndex) =>
+      prevIndex - itemPerPage < 0 ? newestProduct.length - itemPerPage : prevIndex - itemPerPage
+    );
+  };
+
+  const handleNewestNext = () => {
+    setNewestCurrentIndex((prevIndex) =>
+      prevIndex + itemPerPage >= newestProduct.length ? 0 : prevIndex + itemPerPage
+    );
+  };
 
   return (
     <div className='my-12 font-rubik'>
@@ -93,9 +124,34 @@ const Products = () => {
       </div>
       <button className='bg-black text-white p-2 rounded-md px-9'>Explore All</button>
       </div>
-      <div>
+      <div className='p-2 flex flex-col items-center text-center'>
       <h2 className='p-2 font-semibold text-2xl'>Nekonook's Newest</h2>
       <p className='text-gray-700'>Discover the latest styles and products arriving daily at Nekonook.</p>
+      <div className='p-2 relative flex px-20'>
+        <img className="absolute rounded-full p-3 box-content bg-white rotate-90 top-40 left-32 transform -translate-x-1/2 z-20"
+          src={down}
+          alt="down"
+          onClick={handleNewestPrev}
+          style={{ width: '15px', height: '12px' }}
+        />
+            {newestProduct.slice(newestCurrentIndex, newestCurrentIndex + itemPerPage).map((newest)=> (
+            <div className='my-8 px-4 relative' key={newest._id}>
+            <img src={newest.image} alt={newest.name} className='w-64 h-64 realtive' />
+            <h3 className='pt-3 font-semibold border-b-2 from-slate-400'>{newest.name}</h3>
+            <div className='flex justify-between py-2'>
+              <p className='font-semibold'>RS.{newest.price}</p>
+              <span className='text-gray-500 text-sm'>Tax Included</span>
+            </div>
+          </div>
+        ))}
+        <img className="absolute rounded-full p-3 box-content bg-white -rotate-90 top-40 left-[1185px] shadow-lg transform -translate-x-1/2 z-20"
+            src={down}
+            alt="down"
+            onClick={handleNewestNext}
+            style={{ width: '15px', height: '12px' }}
+        />
+      </div>
+      <button className='bg-black text-white p-2 rounded-md px-9'>Shop Now</button>
       </div>
       <div className='w-screen my-6'>
         <img src={frame2} alt='image'/>
