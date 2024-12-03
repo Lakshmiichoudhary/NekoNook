@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 4040
 // routes
 const userRoute = require("./routes/userRouter")
 const adminRoute = require("./routes/adminRoute")
+const productRoute = require("./routes/productRoute")
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(cors({
 
 app.use("/user",userRoute);
 app.use("/admin",adminRoute);
+app.use("/products",productRoute);
 
 
 app.listen(PORT,()=>{
