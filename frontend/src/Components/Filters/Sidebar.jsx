@@ -60,7 +60,8 @@ const Sidebar = () => {
   };
 
   return (
-    <div className='font-rubik w-64'>
+    <div className='font-rubik flex'>
+      <div className='w-64'>
       <h3 className='p-1 font-black text-lg mb-7 mt-5'>Filter</h3>
       <SelectedFilters
         selectedFilters={selectedFilters}
@@ -219,6 +220,7 @@ const Sidebar = () => {
           </div>
         )}
         </div>
+      </div>
     </div>
   )
 }

@@ -69,7 +69,7 @@ const Offers = () => {
             </div>
           </div>
         ))}
-        <img className="absolute rounded-full p-3 box-content bg-white -rotate-90 top-40 left-[1250px] shadow-lg transform -translate-x-1/2 z-20"
+        <img className="absolute rounded-full p-3 box-content bg-white -rotate-90 top-40 left-[1200px] shadow-lg transform -translate-x-1/2 z-20"
             src={down}
             alt="down"
             onClick={handleNext}

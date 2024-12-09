@@ -12,6 +12,7 @@ const AdminNav = () => {
             <Link className='flex cursor-default pr-5 items-center hover:text-orange-400' to=".">Best product</Link>
             <Link className='flex cursor-default pr-5 items-center hover:text-orange-400' to="newest">Newest product</Link>
             <Link className='flex cursor-default pr-5 items-center hover:text-orange-400' to="offer">Limited Offer</Link>
+            <Link className='flex cursor-default pr-5 items-center hover:text-orange-400' to="product">Products</Link>
         </div>
     </nav>  
   )

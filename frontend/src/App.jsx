@@ -13,6 +13,7 @@ import Cart from './pages/Cart'
 import NewestProducts from './Admin/NewestProducts'
 import LimitedOffer from './Admin/LimitedOffer'
 import AddBestSeller from './Admin/AddBestSeller'
+import Products from './Admin/ProductsList'
 
 const App = () => {
 
@@ -57,6 +58,10 @@ const App = () => {
           path: 'offer',
           element: <LimitedOffer />,
         },
+        {
+          path: "product",
+          element : <Products />
+        }
       ],
     },
     {
