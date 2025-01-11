@@ -1,11 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit"
 import useReducer from "./UserSlice"
 import toggleReducer from "./Toggle";
+import itemReducer from "./Items"
 
 const appStore = configureStore({
     reducer : {
         user : useReducer,
-        arrow : toggleReducer
+        arrow : toggleReducer,
+        cart : itemReducer
     }
 })
 

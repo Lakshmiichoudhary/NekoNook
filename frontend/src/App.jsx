@@ -14,6 +14,7 @@ import NewestProducts from './Admin/NewestProducts'
 import LimitedOffer from './Admin/LimitedOffer'
 import AddBestSeller from './Admin/AddBestSeller'
 import Products from './Admin/ProductsList'
+import ProductDetail from './pages/ProductDetail'
 
 const App = () => {
 
@@ -41,6 +42,10 @@ const App = () => {
     {
       path : "sale",
       element : <Sale />
+    },
+    {
+      path : "newDrop/ProductDetail",
+      element : <ProductDetail />
     },
     {
       path : "Admin-Dashboard",

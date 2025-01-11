@@ -47,8 +47,10 @@ const NewDrop = () => {
           <div className='mt-6 p-3 flex flex-wrap'>
             {product.map(pro => (
               <div key={pro.id} className='p-5 w-1/3'>
+                <Link to="ProductDetail">
                 <img src={pro.image} alt={pro.image} className='w-64 h-64' />
                 <h3 className='pt-3 font-semibold border-b-2 from-slate-400'>{pro.name}</h3>
+                </Link>
                 <div className='flex justify-between py-2'>
                   <p className='font-semibold'>RS.{pro.price}</p>
                   <span className='text-gray-500 text-sm'>Tax Included</span>

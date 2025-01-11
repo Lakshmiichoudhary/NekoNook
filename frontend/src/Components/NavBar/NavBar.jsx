@@ -17,6 +17,8 @@ import Profile from './MenuItems/Profile.jsx';
 const NavBar = () => {
   const dispatch = useDispatch();
   const openArrow = useSelector((state) => state.arrow.openArrow);
+  const ListItems = useSelector((state) => state.cart.items)
+  console.log(ListItems)
 
   const [hovered, setHovered] = useState(null);
 
@@ -108,7 +110,7 @@ const NavBar = () => {
           <Link to="/wishlist" className='relative p-2 mx-1 cursor-default'>
             <img src={fav} alt='fav'/>
             <sub className='absolute rounded-full w-5 -top-1 -right-1 flex justify-center items-center h-5 bg-orange-950 text-white'>
-              0
+              {ListItems.length}
             </sub>
           </Link>
           <Link to="/cart" className='relative p-2 mx-1 cursor-default'>
