@@ -9,6 +9,7 @@ import halfStar from "../assets/halfStar.png"
 
 const Sale = () => {
   const [product, setProduct] = useState([])
+  const [searchTerm,setSearchTearm] = useState("")
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -23,9 +24,11 @@ const Sale = () => {
     fetchProduct()
   }, [])
 
+  const filterProduct = product.filter((pro) => pro.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
   return (
     <div>
-        <NavBar />
+        <NavBar onSearch={setSearchTearm} />
         <div className='p-4 mx-16 my-5'>
         <Link to="/browse" className='text-neutral-400'>
           Home &nbsp;|&nbsp;
@@ -39,12 +42,12 @@ const Sale = () => {
 
         <div className='w-3/4'>
           <div className='flex justify-between items-center'>
-            <span className='font-semibold'>{product.length} items</span>
+            <span className='font-semibold'>{filterProduct.length} items</span>
             <SortBy />
           </div>
 
           <div className='mt-6 p-3 flex flex-wrap'>
-            {product.map(pro => (
+            {filterProduct.map(pro => (
               <div key={pro.id} className='p-5 w-1/3 relative'>
                 <img src={pro.image} alt={pro.image} className='w-64 h-64' />
                 <h3 className='pt-3 font-semibold border-b-2 from-slate-400'>{pro.name}</h3>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/Logo.png';
 import downArrow from "../../assets/downArrow.png";
@@ -13,18 +13,61 @@ import { toggleArrow } from '../../Store/Toggle.jsx';
 import Womens from './MenuItems/Womens.jsx';
 import BySeries from './MenuItems/BySeries.jsx';
 import Profile from './MenuItems/Profile.jsx';
+import debounce from "lodash.debounce"
 
-const NavBar = () => {
+const NavBar = ({onSearch}) => {
   const dispatch = useDispatch();
   const openArrow = useSelector((state) => state.arrow.openArrow);
   const ListItems = useSelector((state) => state.cart.items)
-  console.log(ListItems)
+  const [searchItem,setSearch] = useState("")
+  const [suggestions,setSuggestions] = useState("")
+  const searchRef = useRef(null);
+
+  //console.log(ListItems)
 
   const [hovered, setHovered] = useState(null);
 
   const handleArrow = (id) => {
     dispatch(toggleArrow(id));
   };
+
+  const fetchSearchData = async (term) => {
+    try {
+      const response = await fetch(`http://localhost:3000/products/product?search=${term}`);
+      const data = await response.json();
+      //console.log(data);
+      setSuggestions(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  
+
+  const debounceFetch = debounce(fetchSearchData,300);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value);
+    if (value.trim() !== '') {
+      debounceFetch(value);
+    } else {
+      setSuggestions([]); 
+    }
+    onSearch(value);
+  };
+
+  const handleClickOutside = (event) => {
+    if (searchRef.current && !searchRef.current.contains(event.target)) {
+      setSuggestions([]); // Close the suggestions dropdown
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className='font-rubik'>
@@ -92,12 +135,27 @@ const NavBar = () => {
         </div>
         
         <div className='flex'>
-          <div className='relative flex justify-end'>
-            <input
+          <div className='relative flex justify-end' ref={searchRef}>
+            <input 
+              onChange={handleSearchChange}
+              value={searchItem}
               className='p-2 outline-none w-80 border-2 rounded-lg'
               type='text'
               placeholder='search here.....'
             ></input>
+            {suggestions.length > 0 && (
+            <div className="absolute bg-white border border-gray-300 mt-12 z-10 rounded-lg shadow-lg w-full">
+              {suggestions.map((item) => (
+              <div key={item._id} className="p-4 flex gap-3 hover:bg-gray-100">
+                <img src={item.image} alt={item.image} className='w-12 h-12' />
+              <div>
+              <p>{item.name}</p>
+              <p className='font-semibold text-sm'>RS.{item.price}</p>
+              </div>
+            </div>
+            ))}
+            </div>
+           )}
             <img className='p-2 w-9 h-9 absolute' src={search} alt='search'/>
           </div>
           <div className='p-2 mx-1 cursor-default' onClick={() => handleArrow("profile")}>
