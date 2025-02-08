@@ -44,6 +44,10 @@ const App = () => {
       element : <Sale />
     },
     {
+      path : "/sale/ProductDetail/:id",
+      element : <ProductDetail />
+    },
+    {
       path : "newDrop/ProductDetail",
       element : <ProductDetail />
     },

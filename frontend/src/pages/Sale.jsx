@@ -47,10 +47,12 @@ const Sale = () => {
           </div>
 
           <div className='mt-6 p-3 flex flex-wrap'>
-            {filterProduct.map(pro => (
-              <div key={pro.id} className='p-5 w-1/3 relative'>
+            {filterProduct.map((pro,id) => (
+              <div key={id} className='p-5 w-1/3 relative'>
+                <Link to={`/sale/ProductDetail/${pro.id}`}>
                 <img src={pro.image} alt={pro.image} className='w-64 h-64' />
                 <h3 className='pt-3 font-semibold border-b-2 from-slate-400'>{pro.name}</h3>
+                </Link>
                 <span className='absolute px-2 py-1 text-white top-6 left-44 bg-red-400 rounded-sm'>50% OFF</span>
                 <div className='flex justify-between py-2'>
                   <p className='font-semibold'>RS.{pro.price}</p>
