@@ -5,10 +5,10 @@ const Profile = () => {
   return (
     <div className='text-center p-1 font-rubik'>
       <div className='my-3'>
-        <Link to="/" className='bg-orange-400 rounded-lg hover:bg-orange-300 text-white p-3 px-16'>Login</Link>
+        <Link to="/login" className='bg-orange-400 rounded-lg hover:bg-orange-300 text-white p-3 px-16'>Login</Link>
       </div>
       <div className='mt-7'>
-        <Link to="/" className='p-2'>
+        <Link to="/login" className='p-2'>
           New User?&nbsp; 
           <span className='relative group hover:text-gray-600'>
             Register Now

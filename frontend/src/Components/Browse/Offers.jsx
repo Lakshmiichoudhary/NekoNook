@@ -1,84 +1,179 @@
-import React, { useEffect, useState } from 'react'
-import down from "../../assets/down.png"
-import star from "./../../assets/Star.png"
-import halfStar from "./../../assets/halfStar.png"
+import { useState } from "react";
+
+import down from "../../assets/down.png";
+import star from "./../../assets/Star.png";
+import halfStar from "./../../assets/halfStar.png";
+import { offerProductsData } from "../../utils/constants";
 
 const Offers = () => {
-  const [offerProduct,setOfferProduct] = useState([])
-  const [currentIndex,setCurrentIndex] = useState(0)
-  
-  const itemPerPage = 4
-  
-  useEffect(()=>{
-    const fetchProduct = async () => {
-      try{
-        const response = await fetch("http://localhost:3000/products/offer")
-        const data = await response.json()
-        setOfferProduct(data)
-        console.log(data)
-      }
-      catch(error){
-        console.error('error fetching products',error)
-      }
-    }
-    fetchProduct()
-  },[])
+  const itemPerPage =
+    window.innerWidth < 640
+      ? 1
+      : window.innerWidth < 1024
+      ? 2
+      : 4;
+
+  const [offerProduct] = useState(
+    offerProductsData
+  );
+
+  const [currentIndex, setCurrentIndex] =
+    useState(0);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex - itemPerPage < 0 ? offerProduct.length - itemPerPage : prevIndex - itemPerPage
-   )
-  }
+      prevIndex - itemPerPage < 0
+        ? Math.max(
+            offerProduct.length -
+              itemPerPage,
+            0
+          )
+        : prevIndex - itemPerPage
+    );
+  };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + itemPerPage >= offerProduct.length ? 0 : prevIndex + itemPerPage
+      prevIndex + itemPerPage >=
+      offerProduct.length
+        ? 0
+        : prevIndex + itemPerPage
     );
-  }
+  };
 
   return (
-    <div className='p-2 py-12 flex flex-col items-center justify-center text-center font-rubik'>
-      <h2 className='p-2 font-semibold text-2xl'>Limited-Time Offers</h2>
-      <p className='text-gray-700'>Grab these offers before they're gone! Shop now and save big!</p>
-      <div className='p-2 relative flex px-20'>
-        <img className="absolute rounded-full p-3 box-content bg-white rotate-90 top-40 left-32 transform -translate-x-1/2 z-20"
-          src={down}
-          alt="down"
+    <div className="px-4 py-16 flex flex-col items-center justify-center text-center font-rubik overflow-hidden">
+      {/* HEADING */}
+      <h2 className="font-semibold text-2xl md:text-4xl">
+        Limited-Time Offers
+      </h2>
+
+      <p className="text-gray-700 mt-3 text-sm md:text-base max-w-2xl">
+        Grab these anime merch
+        deals before they&lsquo;re
+        gone! Shop now and save
+        big!
+      </p>
+
+      {/* PRODUCTS */}
+      <div className="relative w-full max-w-7xl mt-12">
+        {/* LEFT BUTTON */}
+        <button
           onClick={handlePrev}
-          style={{ width: '15px', height: '12px' }}
-        />
-            {offerProduct.slice(currentIndex,currentIndex + itemPerPage).map((best)=> (
-            <div className='my-8 px-4 relative' key={best._id}>
-            <img src={best.image} alt={best.name} className='w-64 h-64 relative' />
-            <h3 className='pt-3 font-semibold border-b-2 from-slate-400'>{best.name}</h3>
-            <span className='absolute px-2 py-1 text-white top-2 left-44 bg-red-400 rounded-sm'>50% OFF</span>
-            <div className='flex justify-between py-2'>
-              <p className='font-semibold text-red-500'>RS.{best.price}</p>
-              <p className='pr-2 text-gray-500 line-through'>RS.{best.originalPrice}</p>
-              <span className='text-gray-500 pl-8 text-sm'>Tax Included</span>
-            </div>
-            <div className="flex items-center">
-            {[...Array(Math.floor(best.rating))].map((_, index) => (
-                <img key={index} src={star} alt="full star" className="w-4 h-4" />
-              ))}
-
-              {best.rating % 1 >= 0.1 && best.rating % 1 < 0.6 && (
-                <img src={halfStar} alt="half star" className="w-4 h-4" />
-              )}
-              <span className="ml-2 text-sm">{best.rating}</span>
-            </div>
-          </div>
-        ))}
-        <img className="absolute rounded-full p-3 box-content bg-white -rotate-90 top-40 left-[1200px] shadow-lg transform -translate-x-1/2 z-20"
+          className="absolute left-0 md:left-5 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:scale-105 transition-all"
+        >
+          <img
+            className="rotate-90 w-4"
             src={down}
-            alt="down"
-            onClick={handleNext}
-            style={{ width: '15px', height: '12px' }}
-        />
-      </div>
-      <button className='bg-black text-white p-2 rounded-md px-9'>Shop Now</button>
-    </div>
-  )
-}
+            alt="prev"
+          />
+        </button>
 
-export default Offers
+        {/* PRODUCT GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-10">
+          {offerProduct
+            .slice(
+              currentIndex,
+              currentIndex +
+                itemPerPage
+            )
+            .map((best) => (
+              <div
+                className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden relative"
+                key={best._id}
+              >
+                {/* OFFER TAG */}
+                <span className="absolute top-4 right-4 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full z-10">
+                  50% OFF
+                </span>
+
+                {/* IMAGE */}
+                <img
+                  src={best.image}
+                  alt={best.name}
+                  className="w-full h-72 object-cover"
+                />
+
+                {/* CONTENT */}
+                <div className="p-4">
+                  <h3 className="font-semibold text-lg min-h-[56px]">
+                    {best.name}
+                  </h3>
+
+                  {/* PRICE */}
+                  <div className="flex flex-wrap items-center gap-2 mt-3">
+                    <p className="font-bold text-xl text-red-500">
+                      ₹{best.price}
+                    </p>
+
+                    <p className="text-gray-400 line-through text-sm">
+                      ₹
+                      {
+                        best.originalPrice
+                      }
+                    </p>
+                  </div>
+
+                  <p className="text-gray-500 text-sm mt-1">
+                    Tax Included
+                  </p>
+
+                  {/* RATING */}
+                  <div className="flex items-center mt-4">
+                    {[
+                      ...Array(
+                        Math.floor(
+                          best.rating
+                        )
+                      ),
+                    ].map((_, index) => (
+                      <img
+                        key={index}
+                        src={star}
+                        alt="star"
+                        className="w-4 h-4"
+                      />
+                    ))}
+
+                    {best.rating % 1 >=
+                      0.1 &&
+                      best.rating % 1 <
+                        0.6 && (
+                        <img
+                          src={halfStar}
+                          alt="half"
+                          className="w-4 h-4"
+                        />
+                      )}
+
+                    <span className="ml-2 text-sm text-gray-600">
+                      {best.rating}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+
+        {/* RIGHT BUTTON */}
+        <button
+          onClick={handleNext}
+          className="absolute right-0 md:right-5 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:scale-105 transition-all"
+        >
+          <img
+            className="-rotate-90 w-4"
+            src={down}
+            alt="next"
+          />
+        </button>
+      </div>
+
+      {/* BUTTON */}
+      <button className="bg-black hover:bg-gray-900 transition-all text-white px-10 py-3 rounded-xl mt-10">
+        Shop Now
+      </button>
+    </div>
+  );
+};
+
+export default Offers;

@@ -139,3 +139,182 @@ export const colors = [
 ];
 
 
+export const bestSellerData = [
+    {
+      _id: 1,
+      name: "Akatsuki Oversized Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800",
+      price: 2499,
+      rating: 4.8,
+    },
+    {
+      _id: 2,
+      name: "Gojo Satoru Graphic Tee",
+      image:
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800",
+      price: 1899,
+      rating: 4.7,
+    },
+    {
+      _id: 3,
+      name: "Naruto Hokage Jacket",
+      image:
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800",
+      price: 3299,
+      rating: 4.9,
+    },
+    {
+      _id: 4,
+      name: "Attack On Titan Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800",
+      price: 2799,
+      rating: 4.6,
+    },
+    {
+      _id: 5,
+      name: "One Piece Pirate Tee",
+      image:
+        "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=800",
+      price: 1699,
+      rating: 4.5,
+    },
+    {
+      _id: 6,
+      name: "Demon Slayer Flame Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=800",
+      price: 2999,
+      rating: 4.9,
+    },
+  ];
+
+export const newestProductsData = [
+    {
+      _id: 7,
+      name: "Chainsaw Man Streetwear Tee",
+      image:
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=800",
+      price: 1999,
+    },
+    {
+      _id: 8,
+      name: "Tokyo Revengers Varsity Jacket",
+      image:
+        "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800",
+      price: 3599,
+    },
+    {
+      _id: 9,
+      name: "Jujutsu Kaisen Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800",
+      price: 2699,
+    },
+    {
+      _id: 10,
+      name: "Spy x Family Casual Tee",
+      image:
+        "https://images.unsplash.com/photo-1495385794356-15371f348c31?q=80&w=800",
+      price: 1799,
+    },
+    {
+      _id: 11,
+      name: "Dragon Ball Z Oversized Tee",
+      image:
+        "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800",
+      price: 2199,
+    },
+    {
+      _id: 12,
+      name: "Solo Leveling Black Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?q=80&w=800",
+      price: 2899,
+    },
+  ];
+
+export  const offerProductsData = [
+    {
+      _id: 1,
+      name: "Akatsuki Cloud Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800",
+      price: 1499,
+      originalPrice: 2999,
+      rating: 4.8,
+    },
+    {
+      _id: 2,
+      name: "Gojo Limitless Tee",
+      image:
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=800",
+      price: 999,
+      originalPrice: 1999,
+      rating: 4.7,
+    },
+    {
+      _id: 3,
+      name: "Demon Slayer Flame Jacket",
+      image:
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800",
+      price: 1899,
+      originalPrice: 3799,
+      rating: 4.9,
+    },
+    {
+      _id: 4,
+      name: "One Piece Pirate Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800",
+      price: 1599,
+      originalPrice: 3199,
+      rating: 4.6,
+    },
+    {
+      _id: 5,
+      name: "Tokyo Revengers Varsity",
+      image:
+        "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=800",
+      price: 2099,
+      originalPrice: 4199,
+      rating: 4.5,
+    },
+    {
+      _id: 6,
+      name: "Solo Leveling Black Tee",
+      image:
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=800",
+      price: 899,
+      originalPrice: 1799,
+      rating: 4.9,
+    },
+  ];
+
+ export const reviewsData = [
+    {
+      id: 1,
+      name: "Devon Lane",
+      review:
+        "The quality of the products at Nekonook is exceptional. I recently purchased a hoodie and they exceeded my expectations. Love it!",
+      image:
+        "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1000",
+    },
+    {
+      id: 2,
+      name: "Floyd Miles",
+      review:
+        "I love shopping at Nekonook! The selection is vast, and I always find something new to add to my collection.",
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1000",
+    },
+    {
+      id: 3,
+      name: "Ronald Richards",
+      review:
+        "The quality of the products at Nekonook is exceptional. I recently purchased a hoodie and they exceeded my expectations. Love it!",
+      image:
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000",
+    },
+  ];
