@@ -19,18 +19,21 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   const openArrow = useSelector((state) => state.arrow.openArrow);
-  
+
   const userState = useSelector((state) => state.user);
   const currentUser = userState?.user || userState;
 
   const cartItems = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist?.items || []);
 
-  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalCartCount = cartItems.reduce(
+    (acc, item) => acc + item.quantity,
+    0,
+  );
 
   const [searchItem, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  const [isSearched, setIsSearched] = useState(false); 
+  const [isSearched, setIsSearched] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const searchRef = useRef(null);
@@ -41,8 +44,10 @@ const NavBar = () => {
 
   const fetchSearchData = async (term) => {
     try {
+      const API_BASE_URL =
+        import.meta.env.VITE_API_URL; 
       const response = await fetch(
-        `http://localhost:4040/products/product?search=${term}`,
+        `${API_BASE_URL}/products/product?search=${term}`,
       );
       const data = await response.json();
       setSuggestions(data);
@@ -109,17 +114,32 @@ const NavBar = () => {
             </Link>
 
             <div className="hidden lg:flex items-center gap-8 ml-10 font-medium">
-              <Link to="/" className="hover:text-orange-500 transition">Home</Link>
-              <Link to="/newDrop" className="hover:text-orange-500 transition">New Drops</Link>
-              <Link to="/sale" className="hover:text-orange-500 transition">Sale</Link>
-              <Link to="/about" className="hover:text-orange-500 transition">About</Link>
-              <Link to="/contact" className="hover:text-orange-500 transition">Contact</Link>
-              <Link to="/FAQ's" className="hover:text-orange-500 transition">FAQ</Link>
+              <Link to="/" className="hover:text-orange-500 transition">
+                Home
+              </Link>
+              <Link to="/newDrop" className="hover:text-orange-500 transition">
+                New Drops
+              </Link>
+              <Link to="/sale" className="hover:text-orange-500 transition">
+                Sale
+              </Link>
+              <Link to="/about" className="hover:text-orange-500 transition">
+                About
+              </Link>
+              <Link to="/contact" className="hover:text-orange-500 transition">
+                Contact
+              </Link>
+              <Link to="/FAQ's" className="hover:text-orange-500 transition">
+                FAQ
+              </Link>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="relative hidden md:flex justify-end" ref={searchRef}>
+            <div
+              className="relative hidden md:flex justify-end"
+              ref={searchRef}
+            >
               <input
                 onChange={handleSearchChange}
                 value={searchItem}
@@ -132,8 +152,8 @@ const NavBar = () => {
                 <div className="absolute bg-white border border-gray-300 mt-12 z-50 rounded-lg shadow-lg w-full max-h-80 overflow-y-auto">
                   {suggestions.length > 0 ? (
                     suggestions.map((item) => (
-                      <Link 
-                        to={`/product/${item._id || item.id}`} 
+                      <Link
+                        to={`/product/${item._id || item.id}`}
                         key={item._id || item.id}
                         onClick={() => {
                           setSuggestions([]);
@@ -147,13 +167,16 @@ const NavBar = () => {
                           className="w-12 h-12 object-cover rounded"
                         />
                         <div>
-                          <p className="text-sm font-medium text-gray-900">{item.name}</p>
-                          <p className="font-semibold text-xs text-orange-600">RS.{item.price}</p>
+                          <p className="text-sm font-medium text-gray-900">
+                            {item.name}
+                          </p>
+                          <p className="font-semibold text-xs text-orange-600">
+                            RS.{item.price}
+                          </p>
                         </div>
                       </Link>
                     ))
                   ) : (
-                    
                     <div className="p-6 text-center text-gray-500 text-sm font-medium">
                       No results found for {searchItem}
                     </div>
@@ -163,7 +186,10 @@ const NavBar = () => {
               <img className="p-2 w-9 h-9 absolute" src={search} alt="search" />
             </div>
 
-            <div className="p-2 cursor-pointer relative" onClick={() => handleArrow("profile")}>
+            <div
+              className="p-2 cursor-pointer relative"
+              onClick={() => handleArrow("profile")}
+            >
               <img src={profile} alt="profile" className="w-5 h-5" />
               {openArrow.includes("profile") && (
                 <div className="absolute top-10 right-0 rounded-lg shadow-2xl bg-white z-50 min-w-[160px]">
@@ -196,12 +222,24 @@ const NavBar = () => {
         {/* Mobile Menu Open Side */}
         {mobileMenu && (
           <div className="lg:hidden flex flex-col gap-4 pt-5 pb-2 font-medium border-t mt-4">
-            <Link to="/" onClick={() => setMobileMenu(false)}>Home</Link>
-            <Link to="/newDrop" onClick={() => setMobileMenu(false)}>New Drops</Link>
-            <Link to="/sale" onClick={() => setMobileMenu(false)}>Sale</Link>
-            <Link to="/about" onClick={() => setMobileMenu(false)}>About</Link>
-            <Link to="/contact" onClick={() => setMobileMenu(false)}>Contact</Link>
-            <Link to="/FAQ's" onClick={() => setMobileMenu(false)}>FAQ</Link>
+            <Link to="/" onClick={() => setMobileMenu(false)}>
+              Home
+            </Link>
+            <Link to="/newDrop" onClick={() => setMobileMenu(false)}>
+              New Drops
+            </Link>
+            <Link to="/sale" onClick={() => setMobileMenu(false)}>
+              Sale
+            </Link>
+            <Link to="/about" onClick={() => setMobileMenu(false)}>
+              About
+            </Link>
+            <Link to="/contact" onClick={() => setMobileMenu(false)}>
+              Contact
+            </Link>
+            <Link to="/FAQ's" onClick={() => setMobileMenu(false)}>
+              FAQ
+            </Link>
 
             {/* Mobile Search Input */}
             <div className="relative mt-2" ref={searchRef}>

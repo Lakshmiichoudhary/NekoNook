@@ -1,4 +1,4 @@
-import  { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import bgImage from "../../assets/bg.png";
 import eye from "../../assets/Eye.png";
 import eyeclose from "../../assets/eyeclose.png";
@@ -35,7 +35,10 @@ const Auth = () => {
         ? "admin/login"
         : `user/${isLogin ? "login" : "signup"}`;
 
-      const response = await fetch(`http://localhost:4040/${endpoint}`, {
+      const API_BASE_URL =
+        import.meta.env.VITE_API_URL;
+
+      const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
