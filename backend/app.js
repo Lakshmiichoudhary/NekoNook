@@ -20,10 +20,17 @@ const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials: true 
-}))
+    origin: [
+        "http://localhost:5173",
+        "https://neko-nook.vercel.app", // Removed the trailing slash here!
+        /\.vercel\.app$/                  // Safely matches all branch/preview deployments
+    ],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
 
 app.use("/user",userRoute);
 app.use("/admin",adminRoute);
