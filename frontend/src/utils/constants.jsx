@@ -318,3 +318,129 @@ export  const offerProductsData = [
         "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000",
     },
   ];
+
+export const saleProducts = [
+    {
+      id: 1,
+      name: "Akatsuki Oversized Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=1000",
+      price: 1499,
+      originalPrice: 2999,
+      rating: 4.8,
+      anime: "Naruto",
+      discount: "50% OFF",
+    },
+    {
+      id: 2,
+      name: "Gojo Streetwear Tee",
+      image:
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000",
+      price: 999,
+      originalPrice: 1999,
+      rating: 4.7,
+      anime: "Jujutsu Kaisen",
+      discount: "50% OFF",
+    },
+    {
+      id: 3,
+      name: "Tanjiro Graphic Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000",
+      price: 1299,
+      originalPrice: 2599,
+      rating: 4.5,
+      anime: "Demon Slayer",
+      discount: "50% OFF",
+    },
+    {
+      id: 4,
+      name: "Luffy Pirate Jacket",
+      image:
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1000",
+      price: 1999,
+      originalPrice: 3999,
+      rating: 5,
+      anime: "One Piece",
+      discount: "50% OFF",
+    },
+    {
+      id: 5,
+      name: "Tokyo Revengers Tee",
+      image:
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000",
+      price: 899,
+      originalPrice: 1799,
+      rating: 4.4,
+      anime: "Tokyo Revengers",
+      discount: "50% OFF",
+    },
+    {
+      id: 6,
+      name: "Attack On Titan Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1000",
+      price: 1799,
+      originalPrice: 3599,
+      rating: 4.9,
+      anime: "Attack On Titan",
+      discount: "50% OFF",
+    },
+  ];
+
+export const products = [
+    {
+      id: 1,
+      name: "Gojo Oversized Tee",
+      image:
+        "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1000",
+      price: 1499,
+      rating: 4.8,
+      anime: "Jujutsu Kaisen",
+    },
+    {
+      id: 2,
+      name: "Akatsuki Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1503341504253-dff4815485f1?q=80&w=1000",
+      price: 2499,
+      rating: 5,
+      anime: "Naruto",
+    },
+    {
+      id: 3,
+      name: "Tanjiro Graphic Tee",
+      image:
+        "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1000",
+      price: 1399,
+      rating: 4.6,
+      anime: "Demon Slayer",
+    },
+    {
+      id: 4,
+      name: "Luffy Pirate Hoodie",
+      image:
+        "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1000",
+      price: 2299,
+      rating: 4.7,
+      anime: "One Piece",
+    },
+    {
+      id: 5,
+      name: "Tokyo Revengers Tee",
+      image:
+        "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000",
+      price: 1599,
+      rating: 4.5,
+      anime: "Tokyo Revengers",
+    },
+    {
+      id: 6,
+      name: "Attack On Titan Jacket",
+      image:
+        "https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=1000",
+      price: 2999,
+      rating: 5,
+      anime: "Attack On Titan",
+    },
+  ];

@@ -4,40 +4,29 @@ import down from "../../assets/down.png";
 import star from "./../../assets/Star.png";
 import halfStar from "./../../assets/halfStar.png";
 import { offerProductsData } from "../../utils/constants";
+import { Link } from "react-router-dom";
 
 const Offers = () => {
   const itemPerPage =
-    window.innerWidth < 640
-      ? 1
-      : window.innerWidth < 1024
-      ? 2
-      : 4;
+    window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 4;
 
-  const [offerProduct] = useState(
-    offerProductsData
-  );
+  const [offerProduct] = useState(offerProductsData);
 
-  const [currentIndex, setCurrentIndex] =
-    useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex - itemPerPage < 0
-        ? Math.max(
-            offerProduct.length -
-              itemPerPage,
-            0
-          )
-        : prevIndex - itemPerPage
+        ? Math.max(offerProduct.length - itemPerPage, 0)
+        : prevIndex - itemPerPage,
     );
   };
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex + itemPerPage >=
-      offerProduct.length
+      prevIndex + itemPerPage >= offerProduct.length
         ? 0
-        : prevIndex + itemPerPage
+        : prevIndex + itemPerPage,
     );
   };
 
@@ -49,10 +38,8 @@ const Offers = () => {
       </h2>
 
       <p className="text-gray-700 mt-3 text-sm md:text-base max-w-2xl">
-        Grab these anime merch
-        deals before they&lsquo;re
-        gone! Shop now and save
-        big!
+        Grab these anime merch deals before they&lsquo;re gone! Shop now and
+        save big!
       </p>
 
       {/* PRODUCTS */}
@@ -62,21 +49,13 @@ const Offers = () => {
           onClick={handlePrev}
           className="absolute left-0 md:left-5 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:scale-105 transition-all"
         >
-          <img
-            className="rotate-90 w-4"
-            src={down}
-            alt="prev"
-          />
+          <img className="rotate-90 w-4" src={down} alt="prev" />
         </button>
 
         {/* PRODUCT GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 px-10">
           {offerProduct
-            .slice(
-              currentIndex,
-              currentIndex +
-                itemPerPage
-            )
+            .slice(currentIndex, currentIndex + itemPerPage)
             .map((best) => (
               <div
                 className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden relative"
@@ -107,26 +86,15 @@ const Offers = () => {
                     </p>
 
                     <p className="text-gray-400 line-through text-sm">
-                      ₹
-                      {
-                        best.originalPrice
-                      }
+                      ₹{best.originalPrice}
                     </p>
                   </div>
 
-                  <p className="text-gray-500 text-sm mt-1">
-                    Tax Included
-                  </p>
+                  <p className="text-gray-500 text-sm mt-1">Tax Included</p>
 
                   {/* RATING */}
                   <div className="flex items-center mt-4">
-                    {[
-                      ...Array(
-                        Math.floor(
-                          best.rating
-                        )
-                      ),
-                    ].map((_, index) => (
+                    {[...Array(Math.floor(best.rating))].map((_, index) => (
                       <img
                         key={index}
                         src={star}
@@ -135,16 +103,9 @@ const Offers = () => {
                       />
                     ))}
 
-                    {best.rating % 1 >=
-                      0.1 &&
-                      best.rating % 1 <
-                        0.6 && (
-                        <img
-                          src={halfStar}
-                          alt="half"
-                          className="w-4 h-4"
-                        />
-                      )}
+                    {best.rating % 1 >= 0.1 && best.rating % 1 < 0.6 && (
+                      <img src={halfStar} alt="half" className="w-4 h-4" />
+                    )}
 
                     <span className="ml-2 text-sm text-gray-600">
                       {best.rating}
@@ -160,18 +121,17 @@ const Offers = () => {
           onClick={handleNext}
           className="absolute right-0 md:right-5 top-1/2 -translate-y-1/2 z-20 bg-white shadow-lg rounded-full p-3 hover:scale-105 transition-all"
         >
-          <img
-            className="-rotate-90 w-4"
-            src={down}
-            alt="next"
-          />
+          <img className="-rotate-90 w-4" src={down} alt="next" />
         </button>
       </div>
 
       {/* BUTTON */}
-      <button className="bg-black hover:bg-gray-900 transition-all text-white px-10 py-3 rounded-xl mt-10">
+      <Link
+        to={"/sale"}
+        className="bg-black hover:bg-gray-900 transition-all text-white px-10 py-3 rounded-xl mt-10"
+      >
         Shop Now
-      </button>
+      </Link>
     </div>
   );
 };

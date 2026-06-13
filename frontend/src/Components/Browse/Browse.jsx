@@ -1,5 +1,4 @@
 import Hero from './Hero'
-import Footer from './Footer'
 import Products from './Products'
 
 const Browse = () => {
@@ -7,7 +6,6 @@ const Browse = () => {
     <div className='overflow-hidden'>
       <Hero />
       <Products />
-      <Footer />
     </div>
   )
 }

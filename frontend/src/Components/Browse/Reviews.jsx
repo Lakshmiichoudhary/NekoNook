@@ -10,7 +10,7 @@ const Reviews = () => {
     useState(reviewsData);
 
   return (
-    <div className="bg-[#f5f5f5] py-16 px-4 font-rubik overflow-hidden">
+    <div className="bg-[#f5f5f5] py-16 font-rubik overflow-hidden">
       {/* HEADING */}
       <div className="text-center">
         <h2 className="text-2xl md:text-4xl font-bold">

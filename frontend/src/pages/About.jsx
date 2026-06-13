@@ -1,5 +1,3 @@
-import React from 'react'
-import Footer from '../Components/Browse/Footer'
 import bg2 from "../assets/bg2.png"
 import about1 from "../assets/about1.png"
 import { Link } from 'react-router-dom'
@@ -7,7 +5,6 @@ import about2 from "../assets/about2.png"
 import about3 from "../assets/about3.png"
 import about4 from "../assets/about4.png"
 import { offer } from '../utils/constants'
-import NavBar from '../Components/NavBar/NavBar'
 
 const About = () => {
   return (
@@ -35,9 +32,7 @@ const About = () => {
             <div className="text-5xl font-extralight transform rotate-180 p-6 py-7">&#x2191;</div>
           </div>  
         </div>
-        <div className='absolute top-0 left-0 w-full'>
-          <NavBar />
-        </div>
+       
         </div>
       <div className='p-2 text-center m-4 my-8'>
         <h2 className='text-2xl font-bold'>Our Story</h2>
@@ -68,9 +63,6 @@ const About = () => {
             <img className='mx-3' key={id} src={offers.src} alt='offers.src'></img>
           ))}
         </div>
-      </div>
-      <div>
-        <Footer />
       </div>
     </div>
   )

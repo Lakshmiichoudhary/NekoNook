@@ -13,6 +13,7 @@ import down from "./../../assets/down.png";
 import Offers from "./Offers";
 import Reviews from "./Reviews";
 import InstagramSection from "./InstagramSection";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const itemPerPage =
@@ -160,9 +161,12 @@ const Products = () => {
           </button>
         </div>
 
-        <button className="bg-black text-white px-10 py-3 rounded-xl mt-8 hover:bg-gray-900 transition-all">
+        <Link
+          to={"/newDrop"}
+          className="bg-black text-white px-10 py-3 rounded-xl mt-8 hover:bg-gray-900 transition-all"
+        >
           Explore All
-        </button>
+        </Link>
       </div>
 
       {/* NEWEST PRODUCTS */}
@@ -223,9 +227,12 @@ const Products = () => {
           </button>
         </div>
 
-        <button className="bg-black text-white px-10 py-3 rounded-xl mt-8 hover:bg-gray-900 transition-all">
+        <Link
+          to={"/newDrop"}
+          className="bg-black text-white px-10 py-3 rounded-xl mt-8 hover:bg-gray-900 transition-all"
+        >
           Shop Now
-        </button>
+        </Link>
       </div>
 
       {/* BANNER */}
@@ -239,7 +246,7 @@ const Products = () => {
       </div>
 
       {/* REVIEWS */}
-      <div className="my-12 px-4">
+      <div className="my-12 ">
         <Reviews />
       </div>
 

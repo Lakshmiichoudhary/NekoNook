@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import Footer from '../Components/Browse/Footer';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { FAQs, sideBar } from '../utils/constants';
 import arrow from "../assets/downArrow.png"; 
 import orangeArrow from "../assets/orangeArrow.png"; 
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleArrow } from '../Store/Toggle';
-import NavBar from '../Components/NavBar/NavBar';
 
 const Questions = () => {
   const [hovered, setHovered] = useState(null);
@@ -18,15 +16,12 @@ const Questions = () => {
   }
 
   return (
-    <div>
-      <div>
-        <NavBar />
-      </div>
+    <div className='pt-28'>
       <div className='p-4 mx-16 my-5'>
         <Link to="/browse" className='text-neutral-400'>
           Home &nbsp;|&nbsp;
         </Link>
-        <span className='mx-2 font-bold'>FAQ's</span>
+        <span className='mx-2 font-bold'>FAQ&apos;s</span>
       </div>
       <div className='flex'>
         <div className='px-16'>
@@ -57,9 +52,6 @@ const Questions = () => {
                 </div>
             ))}
         </div>
-      </div>
-      <div className='mt-5'>
-        <Footer />
       </div>
     </div>
   );

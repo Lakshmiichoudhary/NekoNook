@@ -15,15 +15,22 @@ import { toggleArrow } from "../../Store/Toggle.jsx";
 
 import debounce from "lodash.debounce";
 
-const NavBar = ({ onSearch }) => {
+const NavBar = () => {
   const dispatch = useDispatch();
 
   const openArrow = useSelector((state) => state.arrow.openArrow);
-  const ListItems = useSelector((state) => state.cart.items);
+  
+  const userState = useSelector((state) => state.user);
+  const currentUser = userState?.user || userState;
+
+  const cartItems = useSelector((state) => state.cart.items);
+  const wishlistItems = useSelector((state) => state.wishlist?.items || []);
+
+  const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   const [searchItem, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-
+  const [isSearched, setIsSearched] = useState(false); 
   const [mobileMenu, setMobileMenu] = useState(false);
 
   const searchRef = useRef(null);
@@ -35,12 +42,11 @@ const NavBar = ({ onSearch }) => {
   const fetchSearchData = async (term) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/products/product?search=${term}`,
+        `http://localhost:4040/products/product?search=${term}`,
       );
-
       const data = await response.json();
-
       setSuggestions(data);
+      setIsSearched(true); // Search operation complete
     } catch (err) {
       console.log(err);
     }
@@ -50,34 +56,32 @@ const NavBar = ({ onSearch }) => {
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
-
     setSearch(value);
 
     if (value.trim() !== "") {
       debounceFetch(value);
     } else {
       setSuggestions([]);
+      setIsSearched(false); // Reset when empty
     }
-
-    onSearch(value);
   };
 
   const handleClickOutside = (event) => {
     if (searchRef.current && !searchRef.current.contains(event.target)) {
       setSuggestions([]);
+      setIsSearched(false);
     }
   };
 
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    <div className="font-rubik">
+    <div className="font-rubik fixed z-50 w-full top-0">
       <p className="bg-black p-3 text-white text-center text-sm md:text-base">
         BUY 3 & GET <strong>250 OFF</strong> | use code <strong>ANI250</strong>
       </p>
@@ -104,41 +108,18 @@ const NavBar = ({ onSearch }) => {
               />
             </Link>
 
-            {/* Desktop Menu */}
             <div className="hidden lg:flex items-center gap-8 ml-10 font-medium">
-              <Link to="/" className="hover:text-orange-500 transition">
-                Home
-              </Link>
-
-              <Link to="/newDrop" className="hover:text-orange-500 transition">
-                New Drops
-              </Link>
-
-              <Link to="/sale" className="hover:text-orange-500 transition">
-                Sale
-              </Link>
-
-              <Link to="/about" className="hover:text-orange-500 transition">
-                About
-              </Link>
-
-              <Link to="/contact" className="hover:text-orange-500 transition">
-                Contact
-              </Link>
-
-              <Link to="/FAQ's" className="hover:text-orange-500 transition">
-                FAQ
-              </Link>
+              <Link to="/" className="hover:text-orange-500 transition">Home</Link>
+              <Link to="/newDrop" className="hover:text-orange-500 transition">New Drops</Link>
+              <Link to="/sale" className="hover:text-orange-500 transition">Sale</Link>
+              <Link to="/about" className="hover:text-orange-500 transition">About</Link>
+              <Link to="/contact" className="hover:text-orange-500 transition">Contact</Link>
+              <Link to="/FAQ's" className="hover:text-orange-500 transition">FAQ</Link>
             </div>
           </div>
 
-          {/* Right */}
           <div className="flex items-center gap-2">
-            {/* Search */}
-            <div
-              className="relative hidden md:flex justify-end"
-              ref={searchRef}
-            >
+            <div className="relative hidden md:flex justify-end" ref={searchRef}>
               <input
                 onChange={handleSearchChange}
                 value={searchItem}
@@ -147,81 +128,82 @@ const NavBar = ({ onSearch }) => {
                 placeholder="search here..."
               />
 
-              {suggestions.length > 0 && (
-                <div className="absolute bg-white border border-gray-300 mt-12 z-50 rounded-lg shadow-lg w-full">
-                  {suggestions.map((item) => (
-                    <div
-                      key={item._id}
-                      className="p-4 flex gap-3 hover:bg-gray-100"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-12 h-12 object-cover"
-                      />
-
-                      <div>
-                        <p>{item.name}</p>
-                        <p className="font-semibold text-sm">RS.{item.price}</p>
-                      </div>
+              {searchItem.trim() !== "" && isSearched && (
+                <div className="absolute bg-white border border-gray-300 mt-12 z-50 rounded-lg shadow-lg w-full max-h-80 overflow-y-auto">
+                  {suggestions.length > 0 ? (
+                    suggestions.map((item) => (
+                      <Link 
+                        to={`/product/${item._id || item.id}`} 
+                        key={item._id || item.id}
+                        onClick={() => {
+                          setSuggestions([]);
+                          setIsSearched(false);
+                        }}
+                        className="p-4 flex gap-3 hover:bg-gray-100 items-center border-b last:border-0"
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="w-12 h-12 object-cover rounded"
+                        />
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">{item.name}</p>
+                          <p className="font-semibold text-xs text-orange-600">RS.{item.price}</p>
+                        </div>
+                      </Link>
+                    ))
+                  ) : (
+                    
+                    <div className="p-6 text-center text-gray-500 text-sm font-medium">
+                      No results found for {searchItem}
                     </div>
-                  ))}
+                  )}
                 </div>
               )}
-
               <img className="p-2 w-9 h-9 absolute" src={search} alt="search" />
             </div>
 
-            {/* Profile */}
-            <div
-              className="p-2 cursor-pointer"
-              onClick={() => handleArrow("profile")}
-            >
+            <div className="p-2 cursor-pointer relative" onClick={() => handleArrow("profile")}>
               <img src={profile} alt="profile" className="w-5 h-5" />
+              {openArrow.includes("profile") && (
+                <div className="absolute top-10 right-0 rounded-lg shadow-2xl bg-white z-50 min-w-[160px]">
+                  <Profile currentUser={currentUser} />
+                </div>
+              )}
             </div>
 
-            {openArrow.includes("profile") && (
-              <div className="absolute top-28 right-20 rounded-lg shadow-2xl bg-white z-50">
-                <Profile />
-              </div>
-            )}
-
-            {/* Wishlist */}
             <Link to="/wishlist" className="relative p-2">
               <img src={fav} alt="fav" className="w-5 h-5" />
-
-              <sub className="absolute rounded-full w-5 h-5 flex justify-center items-center -top-1 -right-1 bg-orange-950 text-white text-xs">
-                {ListItems.length}
-              </sub>
+              {wishlistItems.length > 0 && (
+                <sub className="absolute rounded-full w-5 h-5 flex justify-center items-center -top-1 -right-1 bg-orange-950 text-white text-xs">
+                  {wishlistItems.length}
+                </sub>
+              )}
             </Link>
 
-            {/* Cart */}
+            {/* Cart Link with dynamic count */}
             <Link to="/cart" className="relative p-2">
               <img src={cart} alt="cart" className="w-5 h-5" />
-
-              <sub className="absolute rounded-full w-5 h-5 flex justify-center items-center -top-1 -right-1 bg-orange-950 text-white text-xs">
-                0
-              </sub>
+              {totalCartCount > 0 && (
+                <sub className="absolute rounded-full w-5 h-5 flex justify-center items-center -top-1 -right-1 bg-red-600 text-white text-xs">
+                  {totalCartCount}
+                </sub>
+              )}
             </Link>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Open Side */}
         {mobileMenu && (
           <div className="lg:hidden flex flex-col gap-4 pt-5 pb-2 font-medium border-t mt-4">
-            <Link to="/">Home</Link>
+            <Link to="/" onClick={() => setMobileMenu(false)}>Home</Link>
+            <Link to="/newDrop" onClick={() => setMobileMenu(false)}>New Drops</Link>
+            <Link to="/sale" onClick={() => setMobileMenu(false)}>Sale</Link>
+            <Link to="/about" onClick={() => setMobileMenu(false)}>About</Link>
+            <Link to="/contact" onClick={() => setMobileMenu(false)}>Contact</Link>
+            <Link to="/FAQ's" onClick={() => setMobileMenu(false)}>FAQ</Link>
 
-            <Link to="/newDrop">New Drops</Link>
-
-            <Link to="/sale">Sale</Link>
-
-            <Link to="/about">About</Link>
-
-            <Link to="/contact">Contact</Link>
-
-            <Link to="/FAQ's">FAQ</Link>
-
-            {/* Mobile Search */}
+            {/* Mobile Search Input */}
             <div className="relative mt-2" ref={searchRef}>
               <input
                 onChange={handleSearchChange}
@@ -230,7 +212,6 @@ const NavBar = ({ onSearch }) => {
                 type="text"
                 placeholder="search here..."
               />
-
               <img
                 className="p-2 w-9 h-9 absolute top-0 right-0"
                 src={search}

@@ -1,5 +1,3 @@
-import React from 'react'
-import Footer from '../Components/Browse/Footer'
 import bg2 from "../assets/bg2.png"
 import { Link } from 'react-router-dom'
 import location from "../assets/location.png"
@@ -9,7 +7,6 @@ import map from "../assets/map.png"
 import logo from "../assets/Logo.png"
 import mapPin from "../assets/mapPin.png"
 import Button from "../assets/Button.png"
-import NavBar from '../Components/NavBar/NavBar'
 
 const Contact = () => {
   return (
@@ -23,7 +20,7 @@ const Contact = () => {
           </div>
           <div className='flex flex-col items-center justify-center mt-11 p-4'>
             <h4 className=' text-white opacity-85 font-extralight p-2'>Contact Us</h4>
-            <h1 className='font-bold text-3xl p-2'>Have Questions? Let's Chat!</h1>
+            <h1 className='font-bold text-3xl p-2'>Have Questions? Let&lsquo;s Chat!</h1>
             <p className='text-center p-2 w-2/5'>
                 We’d love to hear from you! Whether you have questions about our products, 
                 need help with an order, 
@@ -37,9 +34,6 @@ const Contact = () => {
             </span>
             <div className="text-5xl font-extralight transform rotate-180 p-6 py-7">&#x2191;</div>
           </div>  
-        </div>
-        <div className='absolute top-0 left-0 w-full'>
-          <NavBar />
         </div>
         </div>
       <div className='p-16 m-4 flex justify-around'>
@@ -100,9 +94,6 @@ const Contact = () => {
       </div>
       <div className='flex justify-end'> 
         <img className='m-4 mx-8' src={Button} alt='downArrow'></img>
-      </div>
-      <div>
-        <Footer />
       </div>
     </div>
   )
